@@ -27,7 +27,8 @@ if "Time Series (Daily)" in data:
     df = pd.DataFrame.from_dict(time_series, orient="index")
     df.index.name = "Date"
     df = df.rename(columns=lambda x: x[3:].strip())    # Remove '1. ', '2.
-    df = df.sort_index()
+    df = df.sort_index(ascending=False)
+    df = df.head(30)                                   # keep last 30 days only
 
     # Save to CSV
     os.makedirs("data", exist_ok=True)
